@@ -171,12 +171,16 @@ function init() {
 
 // change what's displayed on container
 function container(section) {
-	if (section == undefined) section = "events";
+	if (section == undefined) section = "main";
 	return setElementContent("container", getSection(section));	
 }
 
 function events() {
 	return "<p/>Não há eventos agendados de momento.";
+}
+
+function main() {
+	return "<p/>Em breve existirá aqui informação sobre o que é esta campanha.";
 }
 
 // get the HTML corresponding to a certain section
@@ -187,6 +191,9 @@ function getSection(section) {
         case "events":
             html = events();
             break;
+		case "main":
+			html = main();
+			break;
         default:
         	// TODO - add the rest of the cases. In the meantime...
         	var randomnumber=Math.floor(Math.random()*700);
@@ -202,14 +209,13 @@ function getSection(section) {
 function sidebar() {
 	var html = "";
 
-    // generic stuff from libertei.me
     html += libertei();
-
-	 // separator
-	 html += separator();
-
-	 // generic stuff from ansol
-	 html += ansol();
+	html += separator();
+	html += drm();
+	html += separator();
+	html += csi();
+	html += separator();
+	html += ansol();
 
 	setElementContent("sidebar", html);
 }
@@ -220,9 +226,16 @@ function separator() {
 }
 
 function libertei() {
-	return "Em breve haverá informação aqui.";
+	return "<center>Liberte-se com Software Livre!<p/><a href='http://libertei.me'><img src='libertei.png' alt='Liberte-se também!'/></a></center>";
+}
+
+function drm() {
+	return "<center>Campanha nacional contra o DRM<p/><a href='http://drm-pt.info'><img src='DRM.png' alt='DRM-PT'/></a></center>";
 }
 
 function ansol() {
-	return "Em breve haverá informação aqui.";
+	return "<center>Associação Nacional para o Software Livre<p/><a href='http://ansol.org'><img src='ansol.png' alt='ANSOL'/></a></center>";
+}
+function csi() {
+	return "<center>Cultura e Sociedade da Informação<p/><a href='http://c.ansol.org'><img src='CSI.png' alt='CSI'/></a></center>";
 }
